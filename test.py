@@ -5,6 +5,9 @@ class MyApp:
         # initialize root
         self.myparent = myparent
 
+        # name of last button
+        self.myLastButtonInvoked = ""
+
         # initialize container
         self.container1 = tkinter.Frame(myparent)
         self.container1.pack()
@@ -47,7 +50,8 @@ class MyApp:
         self.button4.pack(side=tkinter.LEFT)
 
     def btn1_left(self, event):
-        # report_event(event)
+        self.myLastButtonInvoked = self.button1.widgetName
+        print("Last button that was invoked: %s" % self.myLastButtonInvoked)
         print("button1Click event handler")
         if(self.button1['background'] == 'green'):
             self.button1['background'] = 'yellow'
@@ -55,7 +59,8 @@ class MyApp:
             self.button1['background'] = 'green'
 
     def btn2_left(self, event):
-        # report_event(event)
+        self.myLastButtonInvoked = self.button2.widgetName
+        print("Last button that was invoked: %s" % self.myLastButtonInvoked)
         print("button1Click event handler")
         self.myparent.destroy()
 
@@ -67,6 +72,7 @@ def report_event(event):
     print("EventType: %s, EventName: %s, EventWidgetID: %s, EventKeySymbol: %s"
     % (event.type, event_name[event.type], event.widget, event.keysym))
 
+print("\n" * 100) # clear screen
 root = tkinter.Tk()
 myapp = MyApp(root)
 root.mainloop()
